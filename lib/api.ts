@@ -36,13 +36,13 @@ export async function fetchNotes(
     noteHubSearchParams.params.search = query.trim();
   }
   const response = await axios.get<NoteHubResponse>(
-    "https://notehub-public.goit.study/api/notes/",
+    `https://notehub-public.goit.study/api/notes/`,
     noteHubSearchParams
   );
   return response.data;
 }
 
-export async function removeNote(id: NoteFormData): Promise<Note> {
+export async function removeNote(id: number): Promise<Note> {
   const response = await axios.delete<Note>(
     `https://notehub-public.goit.study/api/notes/${id}`,
     {
