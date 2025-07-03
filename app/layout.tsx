@@ -1,7 +1,13 @@
-import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import type { Metadata } from "next";
+import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import "./globals.css";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+
+export const metadata: Metadata = {
+  title: "NoteHub",
+  description: "YHez_1st_next_JS_DZ",
+};
 
 export default function RootLayout({
   children,
@@ -11,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <TanStackProvider>{children}</TanStackProvider>
-        <Footer />
+        <TanStackProvider>
+          <Header />
+          {children}
+          <Footer />
+        </TanStackProvider>
       </body>
     </html>
   );
