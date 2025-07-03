@@ -1,5 +1,5 @@
 "use client";
-import { fetchNotes } from "../../lib/api";
+import { fetchNotes } from "@/lib/api";
 import NoteList from "@/components/NoteList/NoteList";
 import NoteModal from "@/components/NoteModal/NoteModal";
 import Pagination from "@/components/Pagination/Pagination";

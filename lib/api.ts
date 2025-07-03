@@ -17,7 +17,10 @@ interface NoteHubSearchParams {
   };
 }
 
-const myToken = process.env.VITE_NOTEHUB_TOKEN;
+const myToken = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+axios.defaults.baseURL = "https://notehub-public.goit.study/api";
+
+console.log("Token:", myToken);
 
 export async function fetchNotes(
   query: string,
@@ -36,45 +39,35 @@ export async function fetchNotes(
     noteHubSearchParams.params.search = query.trim();
   }
   const response = await axios.get<NoteHubResponse>(
-    `https://notehub-public.goit.study/api/notes/`,
+    `/notes`,
     noteHubSearchParams
   );
   return response.data;
 }
 
 export async function removeNote(id: number): Promise<Note> {
-  const response = await axios.delete<Note>(
-    `https://notehub-public.goit.study/api/notes/${id}`,
-    {
-      headers: {
-        authorization: `Bearer ${myToken}`,
-      },
-    }
-  );
+  const response = await axios.delete<Note>(`/notes/${id}`, {
+    headers: {
+      authorization: `Bearer ${myToken}`,
+    },
+  });
   return response.data;
 }
 
 export async function createNote(note: NoteFormData): Promise<Note> {
-  const response = await axios.post<Note>(
-    `https://notehub-public.goit.study/api/notes/`,
-    note,
-    {
-      headers: {
-        authorization: `Bearer ${myToken}`,
-      },
-    }
-  );
+  const response = await axios.post<Note>(`/notes`, note, {
+    headers: {
+      authorization: `Bearer ${myToken}`,
+    },
+  });
   return response.data;
 }
 
 export async function fetchNoteById(id: number): Promise<Note> {
-  const response = await axios.get<Note>(
-    `https://notehub-public.goit.study/api/notes/${id}`,
-    {
-      headers: {
-        authorization: `Bearer ${myToken}`,
-      },
-    }
-  );
+  const response = await axios.get<Note>(`/notes/${id}`, {
+    headers: {
+      authorization: `Bearer ${myToken}`,
+    },
+  });
   return response.data;
 }
