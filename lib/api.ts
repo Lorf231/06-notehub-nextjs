@@ -20,8 +20,6 @@ interface NoteHubSearchParams {
 const myToken = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 
-console.log("Token:", myToken);
-
 export async function fetchNotes(
   query: string,
   page: number
